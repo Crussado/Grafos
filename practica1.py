@@ -90,7 +90,7 @@ def lista_a_incidencia(grafo_lista):
     matriz = []
 
     for arista in aristas:
-        fila = [0 * cant]
+        fila = [0] * cant
         saliente = vertices.index(arista[0])
         entrante = vertices.index(arista[1])
         fila[entrante] = 1
@@ -110,7 +110,7 @@ def incidencia_a_lista(grafo_incidencia):
     for linea in matriz:
         saliente = vertices[linea.index(-1)]
         entrante = vertices[linea.index(1)]
-        aristas += (saliente, entrante)
+        aristas += [(saliente, entrante)]
 
     return (vertices, aristas)
 
@@ -132,7 +132,7 @@ def lista_a_adyacencia(grafo_lista):
     cant = len(vertices)
 
     for vertice in vertices:
-        linea = [0 * cant]
+        linea = [0] * cant
         for saliente, entrante in aristas:
             if vertice == saliente:
                 linea[vertices.index(entrante)] = 1
@@ -209,7 +209,11 @@ def lee_archivo(file_path):
 
 
 def main():
-	lee_grafo_stdin()
+    print(grafo_adyacencia1)
+    print(adyacencia_a_lista(grafo_adyacencia1))
+    print(lista_a_adyacencia(adyacencia_a_lista(grafo_adyacencia1)))
+    print(lista_a_incidencia(adyacencia_a_lista(grafo_adyacencia1)))
+    print(incidencia_a_lista(lista_a_incidencia(adyacencia_a_lista(grafo_adyacencia1))))
 
 if __name__ == '__main__':
     main()
